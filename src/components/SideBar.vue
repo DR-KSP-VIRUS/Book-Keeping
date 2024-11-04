@@ -1,0 +1,26 @@
+<template>
+    <ul class="bg-black text-white fixed bottom-0 left-0 right-0 w-full flex grow flex-row justify-between space-x-2 py-2 md:flex-col md:space-x-0 md:space-y-8 md:min-h-screen md:w-40 md:pt-14">
+        <li>
+            <RouterLink to="/" class="flex items-center justify-start cursor-pointer px-6 gap-3 py-4 my-1 md:hover:bg-gray-700">
+                <Icon icon="mdi-light:home" class="text-3xl"/>
+                <span class="hidden font-semibold text-xl md:block">Home</span>
+            </RouterLink>
+        </li>
+        <li>
+            <RouterLink to="/book" class="flex items-center justify-start cursor-pointer px-6 gap-3 py-4 my-1 md:hover:bg-gray-700">
+                <Icon icon="mdi-light:book" class="text-3xl"/>
+                <span class="hidden font-semibold text-xl md:block">Book</span>
+            </RouterLink>
+        </li>
+        <li class="hidden h-auto w-full grow rounded-md md:block"></li>
+        <li class=" text-red-600 md:border-t">
+            <button to="/book" class="flex items-center justify-start cursor-pointer px-6 gap-3 py-4 my-1">
+                <Icon icon="mdi-light:logout" class="text-3xl"/>
+                <span class="hidden font-semibold text-xl md:block">Logout</span>
+            </button>
+        </li>
+    </ul>
+</template>
+<script setup>
+import { Icon } from '@iconify/vue';
+</script>
