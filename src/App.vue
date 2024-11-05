@@ -3,7 +3,7 @@
     <div class="w-full flex-none md:w-40">
       <SideBar/>
     </div>
-    <div class="flex-grow p-4 md:mb-24 md:overflow-y-auto md:p-6">
+    <div class="flex-grow bg-gray-200 p-4 min-h-screen md:overflow-y-auto md:p-6">
       <RouterView/>
     </div>
   </main>

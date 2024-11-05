@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col place-content-start place-items-center w-full">
-        <div class="w-full md:max-w-[860px]">
-        <h1 class="font-bold text-2xl border-b py-2">Add New Sale</h1>
+        <div class="w-full bg-white px-4 mb-32 rounded pt-4 md:mb-0 md:max-w-[860px]">
+            <h1 class="font-bold text-2xl border-b py-2">Add New Sale</h1>
             <AddBook @addrecord="handleSubmit"/>
         </div>
     </div>
