@@ -13,7 +13,7 @@ export const useBookStore = defineStore("bookStore",{
         },
         getQuantity(){
             return this.books.reduce((acc,r)=>{
-                return acc + parseFloat(r.quantity);
+                return acc + parseInt(r.quantity);
             },0)
         },
         async loadRecords(){

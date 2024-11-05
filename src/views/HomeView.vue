@@ -13,7 +13,7 @@
                     <div class="p-4 border-l flex flex-col place-content-center place-items-center">
                         <h3 class="font-semibold">Total Earns</h3>
                         <div class="w-32 h-32 rounded-full border mt-2 bg-orange-700 flex place-content-center place-items-center shadow-md md:w-64 md:h-64">
-                            <p class="w-24 h-24 border rounded-full bg-orange-400 flex place-content-center place-items-center md:w-40 md:h-40">Gh&cent; {{ total }}</p>
+                            <p class="w-24 h-24 border rounded-full bg-orange-400 flex place-content-center place-items-center md:w-40 md:h-40">Gh&cent; {{ total.toFixed(2) }}</p>
                         </div>
                     </div>
                 </div>
