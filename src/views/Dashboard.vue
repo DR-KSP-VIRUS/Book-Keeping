@@ -30,13 +30,17 @@
                 <h2 class="text-2xl font-semibold text-gray-700 px-4">Sales Records</h2>
                 <Icon icon="mdi:filter-list" class="text-4xl cursor-pointer bg-slate-100 rounded-full p-1 mx-2" @click="()=>showMenu = true"/> 
                 <div :class="['flex-col bg-gray-100 shadow-md absolute z-50 right-2 top-12' ,showMenu?'flex':'hidden']">
-                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="()=>showMenu = false">Today</span>
-                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="()=>showMenu = false">Previous Day</span>
-                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="()=>showMenu = false">Weekly</span>
-                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="()=>showMenu = false">Monthly</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="todaySales">Today</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="previousSales">Previous Day</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="weekly">Weekly</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="monthly">Monthly</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="quaterly">Quaterly</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="yearly">Yearly</span>
+                    <span class="py-2 px-4 cursor-pointer hover:bg-gray-50" @click="showAll">Show All</span>
                 </div>
+                
             </div>
-            <div class="py-4 min-w-full rounded overflow-x-scroll overflow-hidden">
+            <div class="py-4 min-w-full h-96 rounded overflow-x-scroll overflow-hidden overflow-y-scroll">
                 <table class="table-fixed border min-w-full text-sm text-left text-gray-500">
                     <thead class="text-sm text-gray-700 uppercase bg-gray-50">
                         <tr>
@@ -50,14 +54,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(record,i) in books" :key="record.id" class="bg-white border-t hover:bg-gray-100">
+                        <tr v-for="(record,i) in records" :key="record.id" class="bg-white border-t hover:bg-gray-100">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900">{{ i+1 }}</th>
                             <td class="px-6 py-4">{{ record.item }}</td>
                             <td class="px-6 py-4">{{ record.category }}</td>
                             <td class="text-center px-6 py-4">{{ record.quantity }}</td>
                             <td class="text-center px-6 py-4 whitespace-nowrap">Gh&cent; {{ record.price }}</td>
                             <td class="text-center px-6 py-4 whitespace-nowrap">Gh&cent; {{ (record.quantity * record.price).toFixed(2) }}</td>
-                            <td class="text-center px-6 py-4 whitespace-nowrap">{{ formater.currentDate(record.createAt) }}</td>
+                            <td class="text-center px-6 py-4 whitespace-nowrap">{{ formater.formateDate(record.createAt) }}</td>
                         </tr>
                         <tr class="bg-black text-white">
                             <td scope="row" colspan="5" class="px-6 text-cent py-2 font-bold">Total</td>
@@ -72,7 +76,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { Icon } from '@iconify/vue';
 import { storeToRefs } from 'pinia';
 import { useBookStore } from '@/stores/bookStore';
@@ -80,9 +84,50 @@ import { DateFormator } from '@/utils/formater';
 import BarChart from '@/components/BarChart.vue';
 
 const bookStore = useBookStore();
-const { books, total, getChartData, getQuantity } = storeToRefs(bookStore);
+const { books, total, getChartData, getQuantity, records } = storeToRefs(bookStore);
 const formater = new DateFormator();
 
 const showMenu = ref(false);
+
+onMounted(()=>{
+    records.value = books.value;
+});
+
+const todaySales = ()=>{
+    records.value = books.value.filter(r => formater.today(r.createAt));
+    showMenu.value = false;
+};
+
+const previousSales = ()=>{
+    records.value = books.value.filter(r => formater.previousDay(r.createAt) == true);
+    showMenu.value = false;
+}
+
+const weekly = () => {
+    records.value = books.value.filter(r => formater.weekly(r.createAt) == true);
+    showMenu.value = false;
+    
+}
+
+const monthly = () => {
+    records.value = books.value.filter(r => formater.monthly(r.createAt) == true);
+    showMenu.value = false;
+}
+
+const quaterly = () => {
+    records.value = books.value.filter(r => formater.quaterly(r.createAt) == true);
+    showMenu.value = false;
+}
+
+const yearly = () => {
+    records.value = books.value.filter(r => formater.yearly(r.createAt) == true);
+    showMenu.value = false;
+}
+
+const showAll = ()=>{
+    records.value = books.value;
+    showMenu.value = false;
+
+}
 
 </script>

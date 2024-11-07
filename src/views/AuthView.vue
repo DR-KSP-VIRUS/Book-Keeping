@@ -10,7 +10,7 @@
   </template>
   
 <script setup>
-  import { onMounted } from 'vue';
+  import { onUnmounted } from 'vue';
   import { storeToRefs } from 'pinia';
   import { useRouter } from 'vue-router';
   import { useUserStore } from '@/stores/userStore';
@@ -20,11 +20,9 @@
   const { isAuthenticated } = storeToRefs(userStore);
   const router = useRouter();
 
-  onMounted(() => {
+  onUnmounted(() => {
     if (!isAuthenticated) {
       router.push('/login');
-    } else {
-      router.push('/dashboard')
     }
   });
 </script>

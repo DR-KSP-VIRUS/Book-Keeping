@@ -14,10 +14,10 @@
         </li>
         <li class="hidden h-auto w-full grow rounded-md md:block"></li>
         <li class=" text-red-600 md:border-t" @click="()=>isAuthenticated=false">
-            <RouterLink to="/login" class="flex items-center justify-start cursor-pointer px-6 gap-3 py-4 my-1">
+            <button to="/login" class="flex items-center justify-start cursor-pointer px-6 gap-3 py-4 my-1">
                 <Icon icon="mdi-light:logout" class="text-3xl"/>
                 <span class="hidden font-semibold text-xl md:block">Logout</span>
-            </RouterLink>
+            </button>
         </li>
     </ul>
 </template>

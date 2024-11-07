@@ -34,14 +34,9 @@
         </div>
         <div class="flex flex-col my-2">
             <label for="category" class="font-bold">Category:</label>
-            <select v-model="formData.category" name="category" id="category" class="border rounded px-2 py-1 outline-orange-400 my-1"
+            <input v-model="formData.category" name="category" id="category" placeholder="Enter Category..." class="border rounded px-2 py-1 outline-orange-400 my-1"
             @blur="!formData.category ? errorFields.category = 'Field can\'t be empty': errorFields.category = '' "
-            >
-                <option disabled value="">Please select one</option>
-                <option value="groceries">Groceries</option>
-                <option value="toiletories">Toiletories</option>
-                <option value="fruits">Fruits</option>
-            </select>
+            />
             <span class="text-red-500">{{ errorFields.category }}</span>
         </div>
         <div class="flex flex-col my-2">
@@ -51,8 +46,6 @@
             >
                 <option disabled value="">Please select one</option>
                 <option value="sold">Sold</option>
-                <option value="pending">Pending</option>
-                <option value="rejected">Reject</option>
             </select>
             <span class="text-red-500">{{ errorFields.status }}</span>
         </div>
