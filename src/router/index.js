@@ -10,10 +10,29 @@ const router = createRouter({
             component: HomeView
         },
         {
-            path:'/book', 
-            component: ()=> import("@/views/BookView.vue"),
-        }
+            path:'/login',
+            component: ()=>import("@/views/SignInView.vue"),
+        },
+        {
+            path: '/signup',
+            component: () => import("@/views/SignUpView.vue"),
+        },
+        {
+            component: () => import("@/views/AuthView.vue"),
+            children: [
+                {
+                    path:'/dashboard',
+                    component: () => import("@/views/Dashboard.vue"),
+                },
+                {
+                    path:'/book',
+                    component: () => import("@/views/BookView.vue"),
+                }
+            ]
+        },
+        
     ]
+    
 });
 
 export default router;

@@ -7,22 +7,17 @@ export const useBookStore = defineStore("bookStore",{
     }),
     getters:{
         total(){
-            return this.books.reduce((acc,record)=>{
-                return acc + (record.quantity * record.price);
-            },0)
+            return this.books.reduce((acc,r)=>acc + (r.quantity * r.price),0);
         },
         getQuantity(){
-            return this.books.reduce((acc,r)=>{
-                return acc + parseInt(r.quantity);
-            },0)
+            return this.books.reduce((acc,r)=>acc + parseInt(r.quantity),0);
         },
         async loadRecords(){
             let books = JSON.parse(localStorage.getItem('books'));
-            if(!books){
-                return;
-            } else {
+            if(books){
                 this.books = books;
-            }
+            } 
+            return;
         }
         ,
         getChartData(){
@@ -34,7 +29,7 @@ export const useBookStore = defineStore("bookStore",{
                         data: this.books.map(d => d.quantity),
                         borderRadius:5,
                     },
-                ]
+                ],
             }
         },
         
