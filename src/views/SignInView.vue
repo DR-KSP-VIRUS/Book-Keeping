@@ -15,7 +15,7 @@
                     class="px-3 py-1 rounded border outline-orange-500"/>
                 </div>
                 <div class="flex my-4">
-                    <button type="submit" class="bg-black text-white w-full rounded py-2 font-semibold transition-all active:scale-95">Save</button>
+                    <button type="submit" class="bg-black text-white w-full rounded py-2 font-semibold transition-all active:scale-95">Login</button>
                 </div>
                 <div>
                     <p>Don't have account yet? 
